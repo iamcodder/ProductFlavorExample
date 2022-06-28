@@ -1,0 +1,57 @@
+{
+  "agcgw_all": {
+    "CN": "connect-drcn.dbankcloud.cn",
+    "CN_back": "connect-drcn.hispace.hicloud.com",
+    "DE": "connect-dre.dbankcloud.cn",
+    "DE_back": "connect-dre.hispace.hicloud.com",
+    "RU": "connect-drru.hispace.dbankcloud.ru",
+    "RU_back": "connect-drru.hispace.dbankcloud.cn",
+    "SG": "connect-dra.dbankcloud.cn",
+    "SG_back": "connect-dra.hispace.hicloud.com"
+  },
+  "websocketgw_all": {
+    "CN": "connect-ws-drcn.hispace.dbankcloud.cn",
+    "CN_back": "connect-ws-drcn.hispace.dbankcloud.com",
+    "DE": "connect-ws-dre.hispace.dbankcloud.cn",
+    "DE_back": "connect-ws-dre.hispace.dbankcloud.com",
+    "RU": "connect-ws-drru.hispace.dbankcloud.ru",
+    "RU_back": "connect-ws-drru.hispace.dbankcloud.cn",
+    "SG": "connect-ws-dra.hispace.dbankcloud.cn",
+    "SG_back": "connect-ws-dra.hispace.dbankcloud.com"
+  },
+  "client": {
+    "cp_id": "5190090000026794396",
+    "product_id": "99536292102429171",
+    "client_id": "924141081237416192",
+    "client_secret": "8E526312F39068DB52CEF3E6925656BB2AA55A023D634946EB259B694A2E6BFF",
+    "project_id": "99536292102429171",
+    "app_id": "106569871",
+    "api_key": "DAEDAD7DYdpwjeIFpgdvxFZ0lw2NU0BSBHSlv+ncJms1fbubjORAUe10/tqzhiBOTgq2Esnv9jfowP+crVc74l5P7ih/K8Z1j1deTQ==",
+    "package_name": "com.patronusstudio.productflavorexample"
+  },
+  "oauth_client": {
+    "client_id": "106569871",
+    "client_type": 1
+  },
+  "app_info": {
+    "app_id": "106569871",
+    "package_name": "com.patronusstudio.productflavorexample"
+  },
+  "configuration_version": "3.0",
+  "appInfos": [
+    {
+      "package_name": "com.patronusstudio.productflavorexample",
+      "client": {
+        "app_id": "106569871"
+      },
+      "app_info": {
+        "package_name": "com.patronusstudio.productflavorexample",
+        "app_id": "106569871"
+      },
+      "oauth_client": {
+        "client_type": 1,
+        "client_id": "106569871"
+      }
+    }
+  ]
+}
