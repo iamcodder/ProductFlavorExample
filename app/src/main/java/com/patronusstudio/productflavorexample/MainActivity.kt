@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    private val loginResultcontract =
+    private val loginResultContract =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             if (it.resultCode == RESULT_OK) {
                 val intent = Intent(this@MainActivity, ProfileActivity::class.java)
@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         loginHelper.init()
 
         findViewById<View>(R.id.btn_login).setOnClickListener {
-            loginResultcontract.launch(loginHelper.getLoginIntent())
+            loginResultContract.launch(loginHelper.getLoginIntent())
         }
     }
 
