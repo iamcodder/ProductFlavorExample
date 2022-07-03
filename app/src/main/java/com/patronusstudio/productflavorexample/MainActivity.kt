@@ -4,38 +4,44 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.huawei.hms.support.hwid.HuaweiIdAuthManager
-import com.huawei.hms.support.hwid.request.HuaweiIdAuthParams
-import com.huawei.hms.support.hwid.request.HuaweiIdAuthParamsHelper
-import com.huawei.hms.support.hwid.service.HuaweiIdAuthService
+import com.huawei.agconnect.AGConnectInstance
+import com.huawei.hms.support.account.AccountAuthManager
+import com.huawei.hms.support.account.request.AccountAuthParams
+import com.huawei.hms.support.account.request.AccountAuthParamsHelper
+import com.huawei.hms.support.account.service.AccountAuthService
+
+enum class LoginType(val resultCode: Int) {
+    HUAWEI(11),
+    GOOGLE(22);
+}
 
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        findViewById<RelativeLayout>(R.id.btn_login).setOnClickListener {
-            val authParams: HuaweiIdAuthParams =
-                HuaweiIdAuthParamsHelper(HuaweiIdAuthParams.DEFAULT_AUTH_REQUEST_PARAM)
-                    .setAuthorizationCode()
-                    .setProfile()
-                    .createParams()
-            val service: HuaweiIdAuthService = HuaweiIdAuthManager.getService(this, authParams)
-            startActivityForResult(service.signInIntent, 99)
-        }
 
+
+        AGConnectInstance.initialize(applicationContext)
+
+        findViewById<RelativeLayout>(R.id.btn_login).setOnClickListener {
+            val authParams: AccountAuthParams =
+                AccountAuthParamsHelper(AccountAuthParams.DEFAULT_AUTH_REQUEST_PARAM)
+                    .setProfile()
+                    .setEmail()
+                    .setAuthorizationCode().createParams()
+            val service: AccountAuthService =
+                AccountAuthManager.getService(this@MainActivity, authParams)
+
+            startActivityForResult(service.signInIntent, LoginType.HUAWEI.resultCode)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode === 99) {
-            //login success
-            val authHuaweiIdTask = HuaweiIdAuthManager.parseAuthResultFromIntent(data)
-            if (authHuaweiIdTask.isSuccessful) {
-                val huaweiAccount = authHuaweiIdTask.result
-            } else {
-
-            }
+        if (requestCode == LoginType.HUAWEI.resultCode) {
+            val intent = Intent(this.applicationContext, ProfileActivity::class.java)
+            startActivity(intent)
         }
     }
 }
