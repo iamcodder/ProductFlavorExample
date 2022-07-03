@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.huawei.agconnect'
 }
 
 android {
@@ -43,6 +42,7 @@ android {
             versionNameSuffix "-hms"
             minSdk 23
             buildConfigField "String","STORE_TYPE",'\"Huawei App Gallery\"'
+            apply plugin: 'com.huawei.agconnect'
         }
     }
 
