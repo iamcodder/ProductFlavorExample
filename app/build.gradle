@@ -15,20 +15,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    flavorDimensions "urlType","store"
+    flavorDimensions "store"
     productFlavors{
-        prod{
-            dimension "urlType"
-            buildConfigField "String","BASE_URL",'"produrl.com"'
-            applicationIdSuffix ".prod"
-            versionNameSuffix "-prod"
-        }
-        uat{
-            dimension "urlType"
-            buildConfigField "String","BASE_URL",'"uaturl.com"'
-            applicationIdSuffix ".uat"
-            versionNameSuffix "-uat"
-        }
         playStore{
             dimension "store"
             applicationIdSuffix ".gms"
@@ -36,16 +24,20 @@ android {
             minSdk 21
             buildConfigField "String","STORE_TYPE",'\"Google Play Store\"'
         }
-        appgallery{
+        appGallery{
             dimension "store"
-            applicationIdSuffix ".hms"
+            applicationIdSuffix ".uat.hms"
             versionNameSuffix "-hms"
             minSdk 23
             buildConfigField "String","STORE_TYPE",'\"Huawei App Gallery\"'
-            apply plugin: 'com.huawei.agconnect'
         }
     }
 
+    android.productFlavors.each { flavor ->
+        if (getGradle().getStartParameter().getTaskRequests().contains("appGallery") ){
+            apply plugin: 'com.huawei.agconnect'
+        }
+    }
 
     buildTypes {
         debug{
@@ -80,6 +72,27 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    appgalleryImplementation 'com.huawei.hms:hwid:6.3.0.301'
-    appgalleryImplementation "com.huawei.agconnect:agconnect-auth-huawei:1.7.0.300"
+    appGalleryImplementation 'com.huawei.hms:hwid:6.3.0.301'
+    appGalleryImplementation "com.huawei.agconnect:agconnect-auth-huawei:1.7.0.300"
+}
+
+android {
+    applicationVariants.all { variant ->
+        delete rootProject.buildDir
+        if(variant.name.contains("appGallery")){
+            copy {
+                from "src/appgallery"
+                include "agconnect-services.json"
+                into "."
+            }
+        } else if(variant.name.contains("playStore")){
+            def isThereAgconnectFile =  fileTree("src/appgallery").filter { it.isFile() }
+                    .files.name.contains("agconnect-services.json")
+            if(isThereAgconnectFile){
+                clean{
+                    delete "$rootProject.projectDir/app/agconnect-services.json"
+                }
+            }
+        }
+    }
 }
