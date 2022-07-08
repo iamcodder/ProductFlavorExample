@@ -25,32 +25,32 @@
     "client_id": "931325980654456128",
     "client_secret": "13B745B1861F2BC435F4AF29771D6B8E33701D8882B7189C4731CDE24C2BB468",
     "project_id": "99536292102461384",
-    "app_id": "106644833",
+    "app_id": "106645819",
     "api_key": "DAEDAIcU6y7u/04gQitST0AZDjYpXjgqVjuG0rtMscx3Mm8FsHBfzTzEyol3PxzMZOftukU1H9G6A0/saz+3tM+4TI09tYCuuDClrA==",
-    "package_name": "com.patronusstudio.productflavorexample.uat.hms"
+    "package_name": "com.patronusstudio.productflavorexample.hms"
   },
   "oauth_client": {
-    "client_id": "106644833",
+    "client_id": "106645819",
     "client_type": 1
   },
   "app_info": {
-    "app_id": "106644833",
-    "package_name": "com.patronusstudio.productflavorexample.uat.hms"
+    "app_id": "106645819",
+    "package_name": "com.patronusstudio.productflavorexample.hms"
   },
   "configuration_version": "3.0",
   "appInfos": [
     {
-      "package_name": "com.patronusstudio.productflavorexample.uat.hms",
+      "package_name": "com.patronusstudio.productflavorexample.hms",
       "client": {
-        "app_id": "106644833"
+        "app_id": "106645819"
       },
       "app_info": {
-        "package_name": "com.patronusstudio.productflavorexample.uat.hms",
-        "app_id": "106644833"
+        "package_name": "com.patronusstudio.productflavorexample.hms",
+        "app_id": "106645819"
       },
       "oauth_client": {
         "client_type": 1,
-        "client_id": "106644833"
+        "client_id": "106645819"
       }
     }
   ]
