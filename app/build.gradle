@@ -26,7 +26,7 @@ android {
         }
         appGallery{
             dimension "store"
-            applicationIdSuffix ".uat.hms"
+            applicationIdSuffix ".hms"
             versionNameSuffix "-hms"
             minSdk 23
             buildConfigField "String","STORE_TYPE",'\"Huawei App Gallery\"'
@@ -34,7 +34,7 @@ android {
     }
 
     android.productFlavors.each { flavor ->
-        if (getGradle().getStartParameter().getTaskRequests().contains("appGallery") ){
+        if (getGradle().getStartParameter().getTaskRequests().toString().toLowerCase().contains("appgallery") ){
             apply plugin: 'com.huawei.agconnect'
         }
     }
@@ -43,11 +43,13 @@ android {
         debug{
             debuggable true
             minifyEnabled false
+            buildConfigField "String","BuildTypes","\"Debug\""
         }
         release {
             debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String","BuildTypes","\"Prod\""
         }
     }
     compileOptions  {
@@ -79,14 +81,14 @@ dependencies {
 android {
     applicationVariants.all { variant ->
         delete rootProject.buildDir
-        if(variant.name.contains("appGallery")){
+        if(variant.name.toString().toLowerCase().contains("appgallery")){
             copy {
                 from "src/appgallery"
                 include "agconnect-services.json"
                 into "."
             }
-        } else if(variant.name.contains("playStore")){
-            def isThereAgconnectFile =  fileTree("src/appgallery").filter { it.isFile() }
+        } else if(variant.name.toString().toLowerCase().contains("playstore")){
+            def isThereAgconnectFile =  fileTree("src/appGallery").filter { it.isFile() }
                     .files.name.contains("agconnect-services.json")
             if(isThereAgconnectFile){
                 clean{
