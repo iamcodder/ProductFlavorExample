@@ -43,13 +43,13 @@ android {
         debug{
             debuggable true
             minifyEnabled false
-            buildConfigField "String","BuildTypes","\"Debug\""
+            buildConfigField "String","BaseUrl","\"test.api.com\""
         }
         release {
             debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String","BuildTypes","\"Prod\""
+            buildConfigField "String","BaseUrl","\"prod.api.com\""
         }
     }
     compileOptions  {
